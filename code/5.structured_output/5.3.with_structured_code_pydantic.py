@@ -1,0 +1,60 @@
+from langchain_openai import ChatOpenAI
+from dotenv import load_dotenv
+from typing import TypedDict, Annotated, Optional, Literal
+
+from pydantic import BaseModel, Field
+
+load_dotenv()
+
+model = ChatOpenAI()
+
+
+# now creating the same using Pydantic
+
+class Review(BaseModel):
+    # key_themes : Annotated[list[str], "Write down all the key themes discussed in the review in a list"]
+    # summary: Annotated[str, "A brief summary of the review"]
+    # sentiment: Annotated[str, "The sentiment of the review, either 'positive', 'negative', or 'neutral'"]
+    # pros : Annotated[Optional[list[str]], "List down the pros mentioned in the review in a list, if any"]
+    # cons : Annotated[Optional[list[str]], "List down the cons mentioned in the review in a list, if any"]
+    # name : Annotated[Optional[str], "Name of the person who wrote the review, if available"]
+    
+    key_themes : list[str] = Field(description="Write down all the key themes discussed in the review in a list")
+    summary: str = Field(description="A brief summary of the review")
+    sentiment: Literal['pos', 'negative'] = Field(description="The sentiment of the review, either positive or negative")
+    pros : Optional[list[str]] = Field(default=None, description="List down the pros mentioned in the review in a list, if any")
+    cons : Optional[list[str]] = Field(default=None, description="List down the cons mentioned in the review in a list, if any")
+    name : Optional[str] = Field(default=None, description="Name of the person who wrote the review, if available")
+
+structured_model = model.with_structured_output(Review)
+
+
+# add the review in invoke()
+# result = structured_model.invoke("""I recently upgraded to the Samsung Galaxy S24 Ultra, and I must say, it's an absolute powerhouse! The Snapdragon 8 Gen 3 processor makes everything lightning fast—whether I’m gaming, multitasking, or editing photos. The 5000mAh battery easily lasts a full day even with heavy use, and the 45W fast charging is a lifesaver.
+# """)
+
+result = structured_model.invoke("""I recently upgraded to the Samsung Galaxy S24 Ultra, and I must say, it’s an absolute powerhouse! The Snapdragon 8 Gen 3 processor makes everything lightning fast—whether I’m gaming, multitasking, or editing photos. The 5000mAh battery easily lasts a full day even with heavy use, and the 45W fast charging is a lifesaver.
+
+The S-Pen integration is a great touch for note-taking and quick sketches, though I don't use it often. What really blew me away is the 200MP camera—the night mode is stunning, capturing crisp, vibrant images even in low light. Zooming up to 100x actually works well for distant objects, but anything beyond 30x loses quality.
+
+However, the weight and size make it a bit uncomfortable for one-handed use. Also, Samsung’s One UI still comes with bloatware—why do I need five different Samsung apps for things Google already provides? The $1,300 price tag is also a hard pill to swallow.
+
+Pros:
+Insanely powerful processor (great for gaming and productivity)
+Stunning 200MP camera with incredible zoom capabilities
+Long battery life with fast charging
+S-Pen support is unique and useful
+                                 
+Review by Nitish Singh
+""")
+
+
+print(result)
+#print(result['summary'])
+
+# as it is pydantic,this is the correct way to fetch
+print("\n",result.summary)
+
+print("\n",result.sentiment)
+
+print(result.name)
