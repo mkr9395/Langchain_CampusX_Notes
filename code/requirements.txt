@@ -2,11 +2,14 @@
 langchain
 langchain-core
 grandalf
+langchain-community
 
 # OpenAI Integration
 langchain-openai
 openai
 streamlit
+pypdf
+beautifulsoup4
 
 # Anthropic Integration
 langchain-anthropic
