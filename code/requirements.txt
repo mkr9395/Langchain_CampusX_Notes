@@ -13,6 +13,8 @@ pypdf
 beautifulsoup4
 chromadb
 tiktoken
+faiss-cpu
+wikipedia
 
 # Anthropic Integration
 langchain-anthropic
