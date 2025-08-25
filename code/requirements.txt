@@ -3,6 +3,7 @@ langchain
 langchain-core
 grandalf
 langchain-community
+langchain-chroma
 
 # OpenAI Integration
 langchain-openai
@@ -10,6 +11,8 @@ openai
 streamlit
 pypdf
 beautifulsoup4
+chromadb
+tiktoken
 
 # Anthropic Integration
 langchain-anthropic
