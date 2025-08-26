@@ -22,6 +22,7 @@ langchain-anthropic
 # Google Gemini (PaLM) Integration
 langchain-google-genai
 google-generativeai
+youtube-transcript-api
 
 # Hugging Face Integration
 langchain-huggingface
