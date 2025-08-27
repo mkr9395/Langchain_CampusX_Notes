@@ -4,8 +4,10 @@ langchain-core
 grandalf
 langchain-community
 langchain-chroma
+langchain_experimental
 
 # OpenAI Integration
+pydantic
 langchain-openai
 openai
 streamlit
@@ -15,6 +17,9 @@ chromadb
 tiktoken
 faiss-cpu
 wikipedia
+duckduckgo-search
+ddgs
+requests
 
 # Anthropic Integration
 langchain-anthropic
