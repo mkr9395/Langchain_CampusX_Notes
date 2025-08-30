@@ -16,12 +16,13 @@ load_dotenv()
 
 model = ChatOpenAI()
 
-parser = StrOutputParser()
+parser1 = StrOutputParser()
 
-# structuing the output to get what we want
+# structuring the output to get what we want
 class Feedback(BaseModel):
     sentiment: Literal['positive', 'negative'] = Field('give the sentiment of the feedback')
 
+#pydantic output parser
 parser2 = PydanticOutputParser(pydantic_object=Feedback)
 
 prompt1 = PromptTemplate(
@@ -43,13 +44,12 @@ prompt3 = PromptTemplate(
     template = 'Write an appropriate response to the following negative feedback \n {feedback}',
     input_variables= ['feedback']
     )
-
+# for i-else we need runnablebranch
 branch_chain = RunnableBranch(
-    (lambda x : x.sentiment == 'positive', prompt2 | model | parser), # (condition1, chain1) -> condition, what excutes if condition is true
-    (lambda x : x.sentiment == 'negative', prompt3 | model | parser),
+    (lambda x : x.sentiment == 'positive', prompt2 | model | parser1), # (condition1, chain1) -> condition, what excutes if condition is true
+    (lambda x : x.sentiment == 'negative', prompt3 | model | parser1),
     RunnableLambda(lambda x : "could not find sentiment") # default chain which should be runnable
 )
-    
     
     
 chain = classifier_chain | branch_chain

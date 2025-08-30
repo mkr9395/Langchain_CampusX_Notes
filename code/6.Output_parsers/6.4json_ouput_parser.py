@@ -18,7 +18,7 @@ parser = JsonOutputParser()
 template = PromptTemplate(
     template = 'Give me the name, age, city of a fictional character \n {format_instruction}',
     input_variables = [],
-    partial_variables = {'format_instruction': parser.get_format_instructions()})
+    partial_variables = {'format_instruction': parser.get_format_instructions()}) # will fail before runtime, that's why partial
     
     
 # prompt = template.format()
@@ -34,7 +34,7 @@ template = PromptTemplate(
 
 # doing same with chains
 chain = template | model | parser
-result = chain.invoke({}) # if no input variable then send blank dictionary
+result = chain.invoke({}) # even if input_variable is blank, we have to add this blank dictionary
 
 
 print(result)

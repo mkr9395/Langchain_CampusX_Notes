@@ -17,7 +17,7 @@ llm = HuggingFaceEndpoint(
 
 model = ChatHuggingFace(llm=llm)
 
-# the schema which we want
+# need to provide the schema which we want using responseSchema
 schema = [
     ResponseSchema(name= 'fact_1', description = 'Fact 1 about the topic'),
     ResponseSchema(name= 'fact_2', description = 'Fact 2 about the topic'),

@@ -6,6 +6,8 @@ from dotenv import load_dotenv
 
 load_dotenv()
 
+model = ChatOpenAI()
+
 prompt1 = PromptTemplate(
     template = 'Write a detailed report on {topic}',
     input_variables= ['topic'])
@@ -13,8 +15,6 @@ prompt1 = PromptTemplate(
 prompt2 = PromptTemplate(
     template = 'Write a 5 line summary on the following text \n {text}',
     input_variables= ['text'])
-
-model = ChatOpenAI()
 
 parser = StrOutputParser()
 

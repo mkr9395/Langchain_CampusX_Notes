@@ -1,6 +1,8 @@
 # now doing with OPENAI as TinyLLAMA is not working
 
-# till now not implemented StrOutputParser
+# This is without implementing StrOutputParser -> very long code where you have to invoke twice
+
+
 from langchain_openai import ChatOpenAI
 from dotenv import load_dotenv
 from langchain.prompts import PromptTemplate

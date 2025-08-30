@@ -1,4 +1,4 @@
-# now implementing the same with stroutputparser
+# now implementing the same with StrOutputParser -> helps in building chain for multiple models in the chain
 
 from langchain_openai import ChatOpenAI
 from dotenv import load_dotenv
@@ -22,16 +22,14 @@ template2 = PromptTemplate(
     template = 'Write a 5 line summary on the following text \n {text}',
     input_variables= ['text'])
 
-prompt1 = template1.invoke({'topic':'Blackhole'})
-
 
 # string ouput parser
 parser = StrOutputParser() # will give detailed report
 
-# forming a chain
+# forming a chain (was able to build chain bcoz of stroutputparser)
 
 chain = template1 | model | parser | template2 | model | parser
 
-result = chain.invoke({'topic':'Blackhole'})
+result = chain.invoke({'topic':'Blackhole'}) # directly run the topic here
 
 print(result)

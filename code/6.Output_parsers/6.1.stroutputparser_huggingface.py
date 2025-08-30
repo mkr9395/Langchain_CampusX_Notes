@@ -1,5 +1,9 @@
 # TinyLlama/TinyLlama-1.1B-Chat-v1.0 is not working
 
+
+
+# This is without implementing StroutputParser -> very long code where you have to invoke twice
+
 from langchain_huggingface import ChatHuggingFace, HuggingFaceEndpoint
 from dotenv import load_dotenv
 from langchain.prompts import PromptTemplate

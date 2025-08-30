@@ -31,16 +31,18 @@ text = '''After a car wreck on Mulholland Drive renders a woman amnesiac, she an
 
 parser = StrOutputParser()
 
-# make 2 seperate parallel chains and then merge their output to a final chain
+# make 2 seperate chains which will run parallely and then merge their output inside a 3rd model to get a final putput
 parallel_chain = RunnableParallel({
     'notes' : prompt1 | model1 | parser,
     'quiz' : prompt2 | model2 | parser
     })
 
+
+# preparing the final model
 merge_chain = prompt3 | model1 | parser
 
 
-# final_chain
+# merging the chains
 chain = parallel_chain | merge_chain
 
 result = chain.invoke({'text':text})
