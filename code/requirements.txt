@@ -33,6 +33,7 @@ youtube-transcript-api
 langchain-huggingface
 transformers
 huggingface-hub
+sentence-transformers
 
 # Environment Variable Management
 python-dotenv
