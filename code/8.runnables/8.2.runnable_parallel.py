@@ -23,7 +23,7 @@ prompt2 = PromptTemplate(
     input_variables= ['topic']
 )
 
-# runnable parallel uses a dictionary
+# runnable parallel always uses a dictionary
 parallel_chain = RunnableParallel({
     'tweet' : RunnableSequence(prompt1, model, parser),
     'linkedin' : RunnableSequence(prompt2, model, parser)

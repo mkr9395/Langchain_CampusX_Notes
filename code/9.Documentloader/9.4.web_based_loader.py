@@ -25,7 +25,7 @@ docs = loader.load()
 
 chain = prompt | model | parser
 
-print(chain.invoke({'question':'What is the prodcut that we are talking about?', 'text':docs[0].page_content}))
+print(chain.invoke({'question':'What is the product that we are talking about?', 'text':docs[0].page_content}))
 
 # print(len(docs))
 
