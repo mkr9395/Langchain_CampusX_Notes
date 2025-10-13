@@ -37,6 +37,10 @@ template = load_prompt("3.3_template.json")
 #     st.write(result.content)
 
 # instead of 2 invokes we will create a single invoke with all the inputs using chains
+
+
+
+
 # calling invoke only once
 if st.button('Summarize'):
     chain = template | model
