@@ -22,7 +22,7 @@ length_input = st.selectbox( "Select Explanation Length", ["Short (1-2 paragraph
 
 
 # loading prompt from json file
-template = load_prompt("3.3_template.json")
+template = load_prompt(r"D:\Generative_AI\CampusX\Langchain_Campusx\code\4.prompts\3.3_template.json")
 
 # fill the placeholders
 

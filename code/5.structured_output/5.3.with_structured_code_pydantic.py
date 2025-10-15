@@ -20,10 +20,15 @@ class Review(BaseModel):
     # name : Annotated[Optional[str], "Name of the person who wrote the review, if available"]
     
     key_themes : list[str] = Field(description="Write down all the key themes discussed in the review in a list")
+    
     summary: str = Field(description="A brief summary of the review")
+    
     sentiment: Literal['pos', 'negative'] = Field(description="The sentiment of the review, either positive or negative")
+    
     pros : Optional[list[str]] = Field(default=None, description="List down the pros mentioned in the review in a list, if any")
+    
     cons : Optional[list[str]] = Field(default=None, description="List down the cons mentioned in the review in a list, if any")
+    
     name : Optional[str] = Field(default=None, description="Name of the person who wrote the review, if available")
 
 structured_model = model.with_structured_output(Review)

@@ -1,3 +1,5 @@
+# IF_ELSE runnables in Lnagchain
+
 from langchain_openai import ChatOpenAI
 from langchain_core.prompts import PromptTemplate 
 from langchain_core.output_parsers import StrOutputParser
@@ -19,7 +21,7 @@ prompt2 = PromptTemplate(
 model = ChatOpenAI()
 parser = StrOutputParser()
 
-# genearitng report about the charcter
+# generating report about the charcter
 # report_gen_chain = RunnableSequence(prompt1, model, parser)
 report_gen_chain = prompt1 | model | parser # another way of performing runnablesequence
 

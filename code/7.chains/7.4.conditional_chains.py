@@ -20,7 +20,7 @@ parser1 = StrOutputParser()
 
 # structuring the output to get what we want
 class Feedback(BaseModel):
-    sentiment: Literal['positive', 'negative'] = Field('give the sentiment of the feedback')
+    sentiment: Literal['positive', 'negative'] = Field(description='give the sentiment of the feedback')
 
 #pydantic output parser
 parser2 = PydanticOutputParser(pydantic_object=Feedback)
@@ -44,7 +44,9 @@ prompt3 = PromptTemplate(
     template = 'Write an appropriate response to the following negative feedback \n {feedback}',
     input_variables= ['feedback']
     )
-# for i-else we need runnablebranch
+
+
+# for if-else branching we need runnablebranch
 branch_chain = RunnableBranch(
     (lambda x : x.sentiment == 'positive', prompt2 | model | parser1), # (condition1, chain1) -> condition, what excutes if condition is true
     (lambda x : x.sentiment == 'negative', prompt3 | model | parser1),

@@ -4,7 +4,7 @@ from langchain_community.document_loaders import DirectoryLoader, PyPDFLoader
 
 loader = DirectoryLoader(
     path = 'D:\Books\deep learning',
-    glob = '*.pdf',
+    glob = '*.pdf', # which type of files will be picked
     loader_cls = PyPDFLoader
 )
 

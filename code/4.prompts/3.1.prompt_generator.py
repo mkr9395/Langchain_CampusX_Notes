@@ -1,4 +1,5 @@
-# adding template in sepearte file
+# adding template in seperate file
+import os
 from langchain_core.prompts import PromptTemplate
 
 
@@ -22,5 +23,7 @@ validation_template=True
 )
 
 # save the template as json file
-template.save("3.3_template.json")
+template.save("./4.prompts/3.3_template.json")
+
+print("completed")
 
